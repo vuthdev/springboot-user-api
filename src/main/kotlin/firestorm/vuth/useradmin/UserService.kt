@@ -1,8 +1,8 @@
-package firestorm.vuth.useradmin.service
+package firestorm.vuth.useradmin
 
-import firestorm.vuth.useradmin.dto.UserDTO
-import firestorm.vuth.useradmin.model.User
-import firestorm.vuth.useradmin.repository.UserRepository
+import firestorm.vuth.useradmin.UserDTO
+import firestorm.vuth.useradmin.User
+import firestorm.vuth.useradmin.UserRepository
 import org.springframework.stereotype.Service
 
 @Service

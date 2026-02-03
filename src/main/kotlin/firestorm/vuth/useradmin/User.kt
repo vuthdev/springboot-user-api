@@ -1,4 +1,4 @@
-package firestorm.vuth.useradmin.model
+package firestorm.vuth.useradmin
 
 import java.time.LocalDateTime
 

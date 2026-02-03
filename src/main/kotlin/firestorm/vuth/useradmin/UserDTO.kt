@@ -1,4 +1,4 @@
-package firestorm.vuth.useradmin.dto
+package firestorm.vuth.useradmin
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size

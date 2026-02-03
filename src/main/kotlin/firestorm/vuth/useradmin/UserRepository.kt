@@ -1,6 +1,5 @@
-package firestorm.vuth.useradmin.repository
+package firestorm.vuth.useradmin
 
-import firestorm.vuth.useradmin.model.User
 import jakarta.annotation.PostConstruct
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper

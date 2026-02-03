@@ -1,8 +1,8 @@
-package firestorm.vuth.useradmin.controller
+package firestorm.vuth.useradmin
 
-import firestorm.vuth.useradmin.dto.UserDTO
-import firestorm.vuth.useradmin.model.User
-import firestorm.vuth.useradmin.service.UserService
+import firestorm.vuth.useradmin.UserDTO
+import firestorm.vuth.useradmin.User
+import firestorm.vuth.useradmin.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import kotlin.collections.mapOf
 
 @RestController
 @RequestMapping("/users")
