@@ -55,6 +55,12 @@ class UserRepository(private val jdbcTemplate: JdbcTemplate) {
     fun findAllUsers(): List<User> =
         jdbcTemplate.query("SELECT * FROM users", rowMapper)
 
+    fun findByUsername(username: String): User? =
+        jdbcTemplate.query("SELECT * FROM users WHERE username=?;", rowMapper, username).firstOrNull()
+
+    fun findByFullname(fullname: String): User? =
+        jdbcTemplate.query("SELECT * FROM users WHERE fullname=?;", rowMapper, fullname).firstOrNull()
+
     fun deleteUser(id: Int) {
         jdbcTemplate.update("DELETE FROM users WHERE id = ?", id)
     }

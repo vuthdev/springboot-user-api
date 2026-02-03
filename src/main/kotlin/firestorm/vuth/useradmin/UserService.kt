@@ -13,6 +13,8 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
     fun createUser(user: User): User {
+        if (userRepository.findByUsername(user.username) != null) throw ResponseStatusException(HttpStatus.CONFLICT, "Username already exists")
+        if (userRepository.findByFullname(user.fullname) != null) throw ResponseStatusException(HttpStatus.CONFLICT, "Full name already exists")
         if (user.username.isBlank()) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Username required")
         if (user.username.length !in 6..100) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "username must be between 6 and 100")
 
@@ -25,6 +27,9 @@ class UserService(
         return userRepository.save(user)
     }
     fun updateUser(id: Int, newUser: User): User {
+        if (userRepository.findByUsername(newUser.username) != null) throw ResponseStatusException(HttpStatus.CONFLICT, "Username already exists")
+        if (userRepository.findByFullname(newUser.fullname) != null) throw ResponseStatusException(HttpStatus.CONFLICT, "Full name already exists")
+        val user = userRepository.findById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with id $id not found")
         if (newUser.username.isBlank()) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Username cannot be blank")
         if (newUser.username.length !in 6..100) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "username must be between 6 and 100")
 
@@ -33,7 +38,6 @@ class UserService(
 
         if (newUser.password.isBlank()) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Password cannot be blank")
         if (newUser.password.length < 6) throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Password must be at least 6")
-        val user = userRepository.findById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User with id $id not found")
 
         user.username = newUser.username
         user.fullname = newUser.fullname
