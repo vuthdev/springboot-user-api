@@ -1,8 +1,5 @@
 package firestorm.vuth.useradmin
 
-import firestorm.vuth.useradmin.UserDTO
-import firestorm.vuth.useradmin.User
-import firestorm.vuth.useradmin.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -21,7 +18,7 @@ class UserController(
     private val userService: UserService,
 ) {
     @PostMapping
-    fun addUser(@Valid @RequestBody user: UserDTO): ResponseEntity<Any> {
+    fun addUser(@RequestBody user: User): ResponseEntity<Any> {
         userService.createUser(user)
         return ResponseEntity.status(HttpStatus.CREATED).body(mapOf("success" to true))
     }
@@ -38,7 +35,7 @@ class UserController(
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Int, @Valid @RequestBody user: UserDTO): ResponseEntity<Any> {
+    fun updateUser(@PathVariable id: Int, @RequestBody user: User): ResponseEntity<Any> {
         userService.updateUser(id, user)
         return ResponseEntity.ok(mapOf("success" to true))
     }
