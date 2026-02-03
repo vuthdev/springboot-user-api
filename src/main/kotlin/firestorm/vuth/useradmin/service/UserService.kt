@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class UserService(
     private val userRepository: UserRepository,
 ) {
-    fun createUser(user: UserDTO) {
+    fun createUser(user: UserDTO): User {
 
         val newUser = User(
             username = user.username,
@@ -17,7 +17,7 @@ class UserService(
             password = user.password
         )
 
-        userRepository.save(newUser)
+        return userRepository.save(newUser)
     }
     fun updateUser(id: Int, newUser: UserDTO): User {
         val user = userRepository.findById(id) ?: throw RuntimeException("User with id $id not found")

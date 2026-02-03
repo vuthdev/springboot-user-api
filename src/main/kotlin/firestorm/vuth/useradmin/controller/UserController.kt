@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import kotlin.collections.mapOf
 
 @RestController
 @RequestMapping("/users")
@@ -22,7 +23,8 @@ class UserController(
 ) {
     @PostMapping
     fun addUser(@Valid @RequestBody user: UserDTO): ResponseEntity<Any> {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user))
+        userService.createUser(user)
+        return ResponseEntity.status(HttpStatus.CREATED).body(mapOf("success" to true))
     }
 
     @GetMapping
@@ -37,8 +39,9 @@ class UserController(
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: Int, @Valid @RequestBody user: UserDTO): ResponseEntity<User> {
-        return ResponseEntity.ok(userService.updateUser(id, user))
+    fun updateUser(@PathVariable id: Int, @Valid @RequestBody user: UserDTO): ResponseEntity<Any> {
+        userService.updateUser(id, user)
+        return ResponseEntity.ok(mapOf("success" to true))
     }
 
     @DeleteMapping("/{id}")
